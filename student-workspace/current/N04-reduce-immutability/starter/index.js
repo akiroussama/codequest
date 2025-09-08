@@ -6,6 +6,7 @@
  * Somme via reduce
  */
 function sum(numbers) {
+  return numbers.reduce((acc, n) => acc + n, 0);
   // TODO: numbers.reduce((acc,n)=>acc+n, 0)
 }
 
@@ -13,6 +14,7 @@ function sum(numbers) {
  * Produit via reduce
  */
 function product(numbers) {
+  return numbers.reduce((acc, n) => acc * n, 1);
   // TODO: numbers.reduce((acc,n)=>acc*n, 1)
 }
 
@@ -20,6 +22,9 @@ function product(numbers) {
  * Compte occurrences d'éléments (immutabilité)
  */
 function frequencyMap(values) {
+  return values.reduce((acc, v) => {
+    return { ...acc, [v]: (acc[v] || 0) + 1 };
+  }, {});
   // TODO: Construire { valeur: compteur } sans muter l'accumulateur original
 }
 
@@ -27,6 +32,7 @@ function frequencyMap(values) {
  * Concatène chaînes avec séparateur via reduce
  */
 function joinWith(values, sep = ',') {
+  return values.reduce((acc, v, i) => (i === 0 ? v : acc + sep + v), '');
   // TODO: Implémenter join via reduce
 }
 
