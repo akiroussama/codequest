@@ -64,8 +64,10 @@
       "timeSpent": 0
     }
   },
-  "hintsUsed": {},
+  "hintsUsed": {
+    "N00-scene": 1
+  },
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:24:07.252Z"
+  "lastUpdated": "2025-09-08T09:42:03.066Z"
 }

@@ -59,9 +59,9 @@ test('getEnvironment indicates ready status', () => {
 
 // Test warmUp
 test('warmUp returns welcome message with name', () => {
-  const result = warmUp('Alice');
-  assert(result === 'Welcome Alice to CodeQuest!', 
-    `Expected "Welcome Alice to CodeQuest!" but got "${result}"`);
+  const result = warmUp('Adventurer');
+  assert(result === 'Welcome Adventurer to CodeQuest!', 
+    `Expected "Welcome Adventurer to CodeQuest!" but got "${result}"`);
 });
 
 test('warmUp uses default name when no argument', () => {
