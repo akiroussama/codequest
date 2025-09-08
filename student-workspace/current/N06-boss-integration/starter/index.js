@@ -7,7 +7,23 @@
  * Input: [{ name: 'Alice', score: 100, bonus: 20 }, ...]
  * Output: [{ rank: 1, name: 'Alice', total: 120 }, ...]
  */
- 
+function generateScoreboard(players) {
+  // TODO: Intégrer tous les concepts
+  // 1. Calculer total = score + bonus
+  // 2. Trier par total décroissant  
+  // 3. Ajouter rank (1, 2, 3...)
+  // 4. Format final { rank, name, total }
+  const withTotals = players.map(p => ({
+    name: p.name,
+    total: (Number(p.score) || 0) + (Number(p.bonus) || 0)
+  }));
+  const sorted = [...withTotals].sort((a, b) => b.total - a.total);
+  return sorted.map((p, i) => ({
+    rank: i + 1,
+    name: p.name,
+    total: p.total
+  }));
+}
 
 /**
  * Supplément: 20 défis d'intégration
