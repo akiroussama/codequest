@@ -1,6 +1,6 @@
 {
   "currentAct": 1,
-  "currentScene": "N00-warmup",
+  "currentScene": "N06-boss-integration",
   "completedScenes": [
     "N00-intro",
     "N01-functions"
@@ -39,26 +39,41 @@
     },
     "N06-boss-integration": {
       "startTime": "2025-09-08T04:51:46.711Z",
-      "attempts": 4,
-      "status": "failed",
-      "timeSpent": 6,
-      "lastValidation": "2025-09-08T04:57:52.428Z"
+      "attempts": 7,
+      "status": "base",
+      "timeSpent": 509,
+      "lastValidation": "2025-09-08T13:21:07.065Z"
     },
     "N01-pure-functions": {
       "startTime": "2025-09-08T04:55:57.066Z",
-      "attempts": 4,
-      "status": "failed",
-      "timeSpent": 185,
-      "lastValidation": "2025-09-08T08:01:03.233Z"
+      "attempts": 5,
+      "status": "base",
+      "timeSpent": 493,
+      "lastValidation": "2025-09-08T13:08:28.564Z"
     },
     "N00-warmup-tutorial": {
       "startTime": "2025-09-08T05:47:39.034Z",
-      "attempts": 0,
-      "status": "started",
-      "timeSpent": 0
+      "attempts": 1,
+      "status": "base",
+      "timeSpent": 439,
+      "lastValidation": "2025-09-08T13:06:35.599Z"
     },
     "N02-destructuring": {
       "startTime": "2025-09-08T05:47:48.847Z",
+      "attempts": 1,
+      "status": "base",
+      "timeSpent": 443,
+      "lastValidation": "2025-09-08T13:10:47.368Z"
+    },
+    "N03-map-filter": {
+      "startTime": "2025-09-08T13:11:06.105Z",
+      "attempts": 1,
+      "status": "base",
+      "timeSpent": 5,
+      "lastValidation": "2025-09-08T13:15:37.729Z"
+    },
+    "N04-reduce-immutability": {
+      "startTime": "2025-09-08T13:16:00.340Z",
       "attempts": 0,
       "status": "started",
       "timeSpent": 0
@@ -67,5 +82,5 @@
   "hintsUsed": {},
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:56:03.065Z"
+  "lastUpdated": "2025-09-08T13:21:07.065Z"
 }

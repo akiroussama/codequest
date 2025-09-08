@@ -6,6 +6,8 @@
  * Extrait la propriété name d'un objet user
  */
 function extractName(user) {
+  const { name } = user;
+  return name;
   // TODO: Utiliser destructuring pour extraire name
   // const { name } = user;
 }
@@ -14,6 +16,7 @@ function extractName(user) {
  * Fusionne deux objets, obj2 écrase obj1
  */
 function mergeObjects(obj1, obj2) {
+  return { ...obj1, ...obj2 };
   // TODO: Utiliser spread pour fusionner
   // return { ...obj1, ...obj2 };
 }
@@ -23,6 +26,7 @@ function mergeObjects(obj1, obj2) {
  * Défauts: { lang: 'en', debug: false }
  */
 function setDefault(config) {
+  return { lang: 'en', debug: false, ...config };
   // TODO: Fusionner avec défauts
   // const defaults = { lang: 'en', debug: false };
 }
