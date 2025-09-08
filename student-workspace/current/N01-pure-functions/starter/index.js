@@ -15,6 +15,7 @@
  * @returns {number} - Somme de a et b
  */
 function add(a, b) {
+  return a + b;
   // TODO: Retourner la somme de a et b
 }
 
@@ -24,6 +25,7 @@ function add(a, b) {
  * @returns {boolean} - true si pair, false si impair
  */
 function isEven(n) {
+  return n % 2 === 0;
   // TODO: Retourner true si n est pair, false sinon
   // Indice: utilisez l'opérateur modulo (%)
 }
@@ -34,6 +36,7 @@ function isEven(n) {
  * @returns {number} - Somme de tous les éléments
  */
 function sum(arr) {
+  return arr.reduce((acc, val) => acc + val, 0);
   // TODO: Retourner la somme de tous les éléments du tableau
   // Indice: vous pouvez utiliser une boucle ou une méthode tableau
 }
@@ -52,6 +55,7 @@ function sum(arr) {
  * Retourne l'opposé arithmétique
  */
 function negate(n) {
+  return -n;
   // TODO: Retourner -n
 }
 
@@ -59,6 +63,7 @@ function negate(n) {
  * Retourne le maximum de deux nombres
  */
 function maxOfTwo(a, b) {
+  return a >= b ? a : b;
   // TODO: Retourner a si a >= b sinon b
 }
 
@@ -67,6 +72,7 @@ function maxOfTwo(a, b) {
  * Contraint n dans l'intervalle [min, max]
  */
 function clamp(n, min, max) {
+  return n < min ? min : n > max ? max : n;
   // TODO: Retourner min si n < min, max si n > max, sinon n
 }
 
@@ -74,6 +80,7 @@ function clamp(n, min, max) {
  * Moyenne arithmétique d'un tableau de nombres
  */
 function average(arr) {
+  return arr.length === 0 ? 0 : sum(arr) / arr.length;
   // TODO: Utiliser sum(arr) / arr.length (gérer arr vide → NaN ou 0)
 }
 
@@ -81,6 +88,7 @@ function average(arr) {
  * Compte le nombre d'occurrences de value dans arr
  */
 function countOccurrences(arr, value) {
+  return arr.reduce((count, v) => count + (v === value ? 1 : 0), 0);
   // TODO: Itérer et compter strictement === value
 }
 
@@ -88,6 +96,9 @@ function countOccurrences(arr, value) {
  * Vérifie si une chaîne est un palindrome (insensible à la casse/espaces)
  */
 function isPalindrome(str) {
+  const normalized = str.toLowerCase().replace(/\s+/g, '');
+  const reversed = normalized.split('').reverse().join('');
+  return normalized === reversed;
   // TODO: Normaliser (lowercase, retirer espaces) puis comparer avec renversé
 }
 
@@ -95,6 +106,8 @@ function isPalindrome(str) {
  * Somme des valeurs uniques d'un tableau de nombres
  */
 function sumUnique(arr) {
+  const uniqueValues = Array.from(new Set(arr));
+  return sum(uniqueValues);
   // TODO: Éliminer doublons puis sommer
 }
 
@@ -103,6 +116,7 @@ function sumUnique(arr) {
  * Supprime les doublons en conservant l'ordre initial
  */
 function unique(arr) {
+  return Array.from(new Set(arr));
   // TODO: Retourner un nouveau tableau sans doublons
 }
 
@@ -110,6 +124,12 @@ function unique(arr) {
  * Retourne un nouvel objet avec uniquement les clés listées
  */
 function pick(object, keys) {
+  return keys.reduce((obj, key) => {
+    if (key in object) {
+      obj[key] = object[key];
+    }
+    return obj;
+  }, {});
   // TODO: Construire un nouvel objet { k: object[k] } pour chaque k présent
 }
 
@@ -117,6 +137,12 @@ function pick(object, keys) {
  * Retourne un nouvel objet sans les clés listées
  */
 function omit(object, keys) {
+  return Object.keys(object).reduce((obj, key) => {
+    if (!keys.includes(key)) {
+      obj[key] = object[key];
+    }
+    return obj;
+  }, {});
   // TODO: Construire un nouvel objet en excluant keys
 }
 
@@ -124,6 +150,7 @@ function omit(object, keys) {
  * Compose deux fonctions f∘g: x → f(g(x))
  */
 function compose2(f, g) {
+  return (x) => f(g(x));
   // TODO: Retourner une fonction (x) => f(g(x))
 }
 
@@ -131,6 +158,11 @@ function compose2(f, g) {
  * Normalise une chaîne en kebab-case (lettres minuscules, mots séparés par '-')
  */
 function toKebabCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/[\s_]+/g, '-') 
+    .replace(/-+/g, '-')    
+    .replace(/^-+|-+$/g, ''); 
   // TODO: Remplacer espaces/underscores par '-', baisser la casse, compacter multiples '-'
 }
 
@@ -139,6 +171,11 @@ function toKebabCase(str) {
  * Tri rapide (quicksort) pur: retourne un nouveau tableau trié (ascendant)
  */
 function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+  const pivot = arr[arr.length - 1];
+  const left = arr.slice(0, -1).filter(x => x <= pivot);
+  const right = arr.slice(0, -1).filter(x => x > pivot);
+  return [...quickSort(left), pivot, ...quickSort(right)];
   // TODO: Implémenter quicksort sans muter arr
 }
 
@@ -146,6 +183,16 @@ function quickSort(arr) {
  * Mémoïse une fonction unaire (clé = argument JSON.stringify)
  */
 function memoizeUnary(fn) {
+  const cache = new Map();
+  return (arg) => {
+    const key = JSON.stringify(arg);
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = fn(arg);
+    cache.set(key, result);
+    return result;
+  };
   // TODO: Retourner une fonction avec cache interne basé sur l'argument
 }
 
@@ -153,6 +200,10 @@ function memoizeUnary(fn) {
  * Test d'égalité profonde (objets/arrays primitifs)
  */
 function deepEqual(a, b) {
+  if (a === b) return true;
+  if (typeof a !== 'object' || a === null || typeof b !== 'object' || b === null) {
+    return false;
+  }
   // TODO: Comparer récursivement types, longueurs, clés et valeurs
 }
 
@@ -160,6 +211,7 @@ function deepEqual(a, b) {
  * Pipe de gauche à droite: pipe(f,g,h)(x) = h(g(f(x)))
  */
 function pipe(...fns) {
+  return (x) => fns.reduce((v, f) => f(v), x);
   // TODO: Retourner une fonction qui applique successivement toutes les fns
 }
 
@@ -167,6 +219,11 @@ function pipe(...fns) {
  * Découpe un tableau en morceaux de taille size
  */
 function chunk(arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
   // TODO: Retourner un nouveau tableau de sous-tableaux (dernière tranche courte possible)
 }
 

@@ -25,7 +25,7 @@ function getEnvironment() {
  * @param {string} name - The name to welcome
  * @returns {string} Welcome message
  */
-function warmUp(name = 'Alice') {
+function warmUp(name = 'Adventurer') {
   // TODO: Return "Welcome [name] to CodeQuest!"
   return `Welcome ${name} to CodeQuest!`;
   // Your code here
@@ -40,60 +40,111 @@ function warmUp(name = 'Alice') {
 
 // Simples
 function greetUpper(name) {
+ return `HELLO, ${name}!`;
   // TODO: Retourner un message en UPPERCASE: `HELLO, ${name}!`
 }
 
 function reverseString(s) {
+  return s.split('').reverse().join('');
   // TODO: Retourner la chaîne inversée
 }
 
 function repeatString(s, n) {
+  return s.repeat(n);
   // TODO: Répéter s n fois (n>=0) sans effets de bord
 }
 
 function parseSemver(version) {
+  const semverRegex = /^v?(\d+)\.(\d+)\.(\d+)$/;
+  const match = version.match(semverRegex);
+  if (!match) {
+    throw new Error('Invalid version format');
+  }
+  return {
+    major: parseInt(match[1], 10),
+    minor: parseInt(match[2], 10),
+    patch: parseInt(match[3], 10)
+  };
   // TODO: Retourner { major, minor, patch } depuis 'v16.14.2' ou '16.14.2'
 }
 
 function isNodeGte(required) {
+  const current = parseSemver(process.version);
+  const req = parseSemver(required);
+  if (current.major > req.major) return true;
+  if (current.major < req.major) return false;
+  if (current.minor > req.minor) return true;
+  if (current.minor < req.minor) return false;
+  return current.patch >= req.patch;
   // TODO: Retourner true si process.version >= required (ex: '16.0.0') sans effets de bord
 }
 
 // Faciles
 function sumRange(n) {
+  return (n * (n + 1)) / 2;
   // TODO: Somme 1..n (n>=1)
 }
 
 function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
   // TODO: Factorielle de n (0! = 1)
 }
 
 function isPrime(n) {
+  if (n <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
   // TODO: Tester primalité (n entier >= 0)
 }
 
 function toKebab(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-') 
+    .replace(/^-+|-+$/g, '');    
   // TODO: Convertir 'Hello World_test' → 'hello-world-test'
 }
 
 function formatBytes(bytes) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   // TODO: Retourner une chaîne formatée (ex: 1024 → '1 KB') sans I/O
 }
 
 // Moyens
 function range(start, end, step = 1) {
+  const result = [];
+  for (let i = start; i <= end; i += step) {
+    result.push(i);
+  }
+  return result;
   // TODO: Retourner un tableau [start, start+step, ..., <= end]
 }
 
 function uniqueSorted(arr) {
+  return Array.from(new Set(arr)).sort((a, b) => a - b);
   // TODO: Retourner valeurs uniques triées (asc)
 }
 
 function chunkArray(arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
   // TODO: Retourner un tableau de sous-tableaux de taille size
 }
 
 function median(arr) {
+  const sorted = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
   // TODO: Retourner la médiane (tableau non vide)
 }
 

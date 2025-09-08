@@ -6,6 +6,7 @@
  * Double tous les nombres d'un tableau
  */
 function doubleNumbers(numbers) {
+  return numbers.map(n => n * 2);
   // TODO: Utiliser .map() pour doubler
 }
 
@@ -13,6 +14,16 @@ function doubleNumbers(numbers) {
  * Filtre les nombres pairs
  */
 function filterEven(numbers) {
+  return numbers.filter(n => n % 2 === 0);
+  // TODO: Utiliser .filter() avec isEven
+}
+
+function isEven(n) {
+  return n % 2 === 0;
+}
+
+function filterEven(numbers) {
+  return numbers.filter(isEven);
   // TODO: Utiliser .filter() avec isEven
 }
 
@@ -20,6 +31,7 @@ function filterEven(numbers) {
  * Pipeline: garde les pairs et les double
  */
 function evenDoubled(numbers) {
+  return numbers.filter(isEven).map(n => n * 2);
   // TODO: Chaîner .filter().map()
 }
 
