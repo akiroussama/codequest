@@ -16,6 +16,7 @@
  */
 function add(a, b) {
   // TODO: Retourner la somme de a et b
+  return a+b;
 }
 
 /**
@@ -26,6 +27,7 @@ function add(a, b) {
 function isEven(n) {
   // TODO: Retourner true si n est pair, false sinon
   // Indice: utilisez l'opérateur modulo (%)
+  return n%2==0;
 }
 
 /**
@@ -36,6 +38,8 @@ function isEven(n) {
 function sum(arr) {
   // TODO: Retourner la somme de tous les éléments du tableau
   // Indice: vous pouvez utiliser une boucle ou une méthode tableau
+  const initialValue = 0;
+  return arr.reduce((accumulator, currentValue) => accumulator + currentValue,initialValue,);;
 }
 
 /**
