@@ -1,6 +1,6 @@
 {
   "currentAct": 1,
-  "currentScene": "N02-destructuring",
+  "currentScene": "N06-boss-integration",
   "completedScenes": [
     "N00-intro",
     "N01-functions"
@@ -67,5 +67,5 @@
   "hintsUsed": {},
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:59:29.603Z"
+  "lastUpdated": "2025-09-08T12:08:47.956Z"
 }
