@@ -15,6 +15,7 @@
  * @returns {number} - Somme de a et b
  */
 function add(a, b) {
+  return a + b;
   // TODO: Retourner la somme de a et b
 }
 
@@ -24,6 +25,7 @@ function add(a, b) {
  * @returns {boolean} - true si pair, false si impair
  */
 function isEven(n) {
+  return n % 2 === 0;
   // TODO: Retourner true si n est pair, false sinon
   // Indice: utilisez l'opérateur modulo (%)
 }
@@ -34,6 +36,7 @@ function isEven(n) {
  * @returns {number} - Somme de tous les éléments
  */
 function sum(arr) {
+  return arr.reduce((acc, val) => acc + val, 0);
   // TODO: Retourner la somme de tous les éléments du tableau
   // Indice: vous pouvez utiliser une boucle ou une méthode tableau
 }

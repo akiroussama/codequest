@@ -6,6 +6,11 @@
  * Compteur via fermeture
  */
 function createCounter(start = 0) {
+  let count = start - 1;
+  return {
+    next: () => ++count,
+    value: () => count
+  };
   // TODO: Retourner { next:()=>++count, value:()=>count }
 }
 
@@ -13,6 +18,12 @@ function createCounter(start = 0) {
  * Fabrique de logger silencieux (pas d'I/O): accumulate messages
  */
 function createLogger() {
+  let logs = [];
+  return {
+    log: (message) => logs.push(message),
+    get: () => [...logs],
+    clear: () => { logs = []; }
+  };
   // TODO: Retourner { log:(m)=>..., get:()=>[...], clear:()=>... }
 }
 
@@ -20,6 +31,13 @@ function createLogger() {
  * Module de cache en fermeture
  */
 function createCache() {
+  let cache = new Map();
+  return {
+    get: (key) => cache.get(key),
+    set: (key, value) => { cache.set(key, value); },
+    has: (key) => cache.has(key),
+    size: () => cache.size
+  };
   // TODO: get/set/has/size avec encapsulation
 }
 

@@ -10,6 +10,7 @@
  */
 
 function ping(message) {
+  return `pong: ${message}`;
   // TODO: Retourner le message préfixé par "pong: "
   // Indice: Utiliser la concaténation de strings ou template literals
 }
