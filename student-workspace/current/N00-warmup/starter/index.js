@@ -15,7 +15,7 @@ function getEnvironment() {
   return {
     node: process.version,
     platform: process.platform,
-    ready: true
+    ready: true,
   };
   // Your code here
 }
@@ -25,7 +25,7 @@ function getEnvironment() {
  * @param {string} name - The name to welcome
  * @returns {string} Welcome message
  */
-function warmUp(name = 'Alice') {
+function warmUp(name = "Adventurer") {
   // TODO: Return "Welcome [name] to CodeQuest!"
   return `Welcome ${name} to CodeQuest!`;
   // Your code here
@@ -41,18 +41,24 @@ function warmUp(name = 'Alice') {
 // Simples
 function greetUpper(name) {
   // TODO: Retourner un message en UPPERCASE: `HELLO, ${name}!`
+  return `HELLO, ${name}!`;
 }
 
 function reverseString(s) {
   // TODO: Retourner la chaîne inversée
+  return s.split("").reverse().join("");
 }
 
 function repeatString(s, n) {
   // TODO: Répéter s n fois (n>=0) sans effets de bord
+  return s.repeat(n);
 }
 
 function parseSemver(version) {
   // TODO: Retourner { major, minor, patch } depuis 'v16.14.2' ou '16.14.2'
+  const clean = version.startsWith("v") ? version.slice(1) : version;
+  const [major, minor, patch] = clean.split(".").map(Number);
+  return { major, minor, patch };
 }
 
 function isNodeGte(required) {
@@ -62,18 +68,34 @@ function isNodeGte(required) {
 // Faciles
 function sumRange(n) {
   // TODO: Somme 1..n (n>=1)
+  return (n * (n + 1)) / 2;
 }
 
 function factorial(n) {
   // TODO: Factorielle de n (0! = 1)
+  if (n === 0) return 1;
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 function isPrime(n) {
   // TODO: Tester primalité (n entier >= 0)
+  if (n < 2) return false;
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 function toKebab(str) {
   // TODO: Convertir 'Hello World_test' → 'hello-world-test'
+  return str
+    .replace(/[_\s]+/g, "-")
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .toLowerCase();
 }
 
 function formatBytes(bytes) {
@@ -97,7 +119,6 @@ function median(arr) {
   // TODO: Retourner la médiane (tableau non vide)
 }
 
-
 // Don't forget to export your functions!
 module.exports = {
   getEnvironment,
@@ -116,5 +137,5 @@ module.exports = {
   range,
   uniqueSorted,
   chunkArray,
-  median
+  median,
 };
