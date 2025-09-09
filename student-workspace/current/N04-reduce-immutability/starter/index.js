@@ -16,7 +16,7 @@ function product(numbers) {
   // TODO: numbers.reduce((acc,n)=>acc*n, 1)
 }
 
-/**
+/**sd
  * Compte occurrences d'éléments (immutabilité)
  */
 function frequencyMap(values) {
