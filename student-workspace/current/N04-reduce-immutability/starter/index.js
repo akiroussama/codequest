@@ -2,120 +2,142 @@
  * CodeQuest 2.3 - N04 Reduce & Immutability
  */
 
-/**
- * Somme via reduce
- */
 function sum(numbers) {
-  // TODO: numbers.reduce((acc,n)=>acc+n, 0)
+  return numbers.reduce((acc, n) => acc + n, 0);
 }
 
-/**
- * Produit via reduce
- */
 function product(numbers) {
-  // TODO: numbers.reduce((acc,n)=>acc*n, 1)
+  return numbers.reduce((acc, n) => acc * n, 1);
 }
 
-/**
- * Compte occurrences d'éléments (immutabilité)
- */
 function frequencyMap(values) {
-  // TODO: Construire { valeur: compteur } sans muter l'accumulateur original
+  return values.reduce((acc, v) => ({ ...acc, [v]: (acc[v] || 0) + 1 }), {});
 }
 
-/**
- * Concatène chaînes avec séparateur via reduce
- */
 function joinWith(values, sep = ',') {
-  // TODO: Implémenter join via reduce
+  return values.reduce((acc, v, i) => (i === 0 ? `${v}` : `${acc}${sep}${v}`), '');
 }
-
-/**
- * Supplément: 20 défis (Reduce / Immutabilité)
- */
 
 // Simples
 function minValue(numbers) {
-  // TODO: Accumuler le minimum
+  return numbers.reduce((min, n) => (n < min ? n : min), Infinity);
 }
 
 function maxValue(numbers) {
-  // TODO: Accumuler le maximum
+  return numbers.reduce((max, n) => (n > max ? n : max), -Infinity);
 }
 
 function countTruthy(values) {
-  // TODO: Compter valeurs truthy
+  return values.reduce((acc, v) => acc + (v ? 1 : 0), 0);
 }
 
 function flattenOnce(arrays) {
-  // TODO: [[1],[2,3]] → [1,2,3]
+  return arrays.reduce((acc, arr) => [...acc, ...arr], []);
 }
 
 function sumBy(list, key) {
-  // TODO: Somme des list[i][key]
+  return list.reduce((acc, obj) => acc + (obj[key] || 0), 0);
 }
 
 // Faciles
 function groupBy(list, key) {
-  // TODO: { [value]: [items] }
+  return list.reduce((acc, obj) => {
+    const k = obj[key];
+    return { ...acc, [k]: [...(acc[k] || []), obj] };
+  }, {});
 }
 
 function unique(numbers) {
-  // TODO: Retourner uniques (Set ou reduce pur)
+  return numbers.reduce((acc, n) => (acc.includes(n) ? acc : [...acc, n]), []);
 }
 
 function mapWithReduce(list, fn) {
-  // TODO: Reproduire map via reduce (immutabilité)
+  return list.reduce((acc, v) => [...acc, fn(v)], []);
 }
 
 function filterWithReduce(list, predicate) {
-  // TODO: Reproduire filter via reduce
+  return list.reduce((acc, v) => (predicate(v) ? [...acc, v] : acc), []);
 }
 
 function partition(list, predicate) {
-  // TODO: Retourner { pass:[], fail:[] }
+  return list.reduce(
+    (acc, v) => {
+      if (predicate(v)) acc.pass.push(v);
+      else acc.fail.push(v);
+      return acc;
+    },
+    { pass: [], fail: [] }
+  );
 }
 
 // Moyens
 function compose(...fns) {
-  // TODO: Réaliser composition via reduceRight
+  return x => fns.reduceRight((acc, fn) => fn(acc), x);
 }
 
 function pipe(...fns) {
-  // TODO: Réaliser pipe via reduce
+  return x => fns.reduce((acc, fn) => fn(acc), x);
 }
 
 function dedupeStable(list) {
-  // TODO: Supprimer doublons en gardant premier index
+  return list.reduce((acc, v) => (acc.includes(v) ? acc : [...acc, v]), []);
 }
 
 function runningSum(numbers) {
-  // TODO: Retourner cumul progressif: [a,b,c] → [a,a+b,a+b+c]
+  let total = 0;
+  return numbers.map(n => (total += n));
 }
 
 function histogram(strings) {
-  // TODO: { len:count } sur longueur des strings
+  return strings.reduce((acc, s) => ({ ...acc, [s.length]: (acc[s.length] || 0) + 1 }), {});
 }
 
 // Complexes
-function deepFreezeClone(object) {
-  // TODO: Retourner une version profondément figée (immuable) sans muter original
+function deepFreezeClone(obj) {
+  if (Array.isArray(obj)) return Object.freeze(obj.map(deepFreezeClone));
+  if (obj && typeof obj === 'object') {
+    const clone = Object.entries(obj).reduce((acc, [k, v]) => ({ ...acc, [k]: deepFreezeClone(v) }), {});
+    return Object.freeze(clone);
+  }
+  return obj;
 }
 
 function deepMerge(objects) {
-  // TODO: Fusionner une liste d'objets récursivement via reduce
+  return objects.reduce((acc, obj) => {
+    const keys = Object.keys(obj);
+    return keys.reduce((innerAcc, k) => {
+      const valA = innerAcc[k];
+      const valB = obj[k];
+      if (valA && typeof valA === 'object' && valB && typeof valB === 'object') {
+        innerAcc[k] = deepMerge([valA, valB]);
+      } else {
+        innerAcc[k] = valB;
+      }
+      return innerAcc;
+    }, { ...acc });
+  }, {});
 }
 
 function diffArrays(a, b) {
-  // TODO: Retourner { added, removed, kept }
+  const setB = new Set(b);
+  return {
+    added: b.filter(x => !a.includes(x)),
+    removed: a.filter(x => !setB.has(x)),
+    kept: a.filter(x => setB.has(x))
+  };
 }
 
 function toCSV(rows) {
-  // TODO: Construire CSV depuis [{...}] via reduce
+  if (!rows.length) return '';
+  const headers = Object.keys(rows[0]);
+  return [
+    headers.join(','),
+    ...rows.map(r => headers.map(h => r[h]).join(','))
+  ].join('\n');
 }
 
 function indexBy(list, key) {
-  // TODO: { [item[key]]: item }
+  return list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {});
 }
 
 module.exports = {
@@ -144,5 +166,3 @@ module.exports = {
   toCSV,
   indexBy
 };
-
-
