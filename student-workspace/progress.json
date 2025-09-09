@@ -1,6 +1,6 @@
 {
   "currentAct": 1,
-  "currentScene": "N00-warmup",
+  "currentScene": "N06-boss-integration",
   "completedScenes": [
     "N00-intro",
     "N01-functions"
@@ -39,10 +39,10 @@
     },
     "N06-boss-integration": {
       "startTime": "2025-09-08T04:51:46.711Z",
-      "attempts": 4,
-      "status": "failed",
-      "timeSpent": 6,
-      "lastValidation": "2025-09-08T04:57:52.428Z"
+      "attempts": 7,
+      "status": "base",
+      "timeSpent": 1627,
+      "lastValidation": "2025-09-09T07:58:21.262Z"
     },
     "N01-pure-functions": {
       "startTime": "2025-09-08T04:55:57.066Z",
@@ -62,10 +62,16 @@
       "attempts": 0,
       "status": "started",
       "timeSpent": 0
+    },
+    "N04-reduce-immutability": {
+      "startTime": "2025-09-09T07:51:49.177Z",
+      "attempts": 0,
+      "status": "started",
+      "timeSpent": 0
     }
   },
   "hintsUsed": {},
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:56:03.065Z"
+  "lastUpdated": "2025-09-09T07:58:21.262Z"
 }
