@@ -6,16 +6,15 @@
  * Extrait la propriété name d'un objet user
  */
 function extractName(user) {
-  // TODO: Utiliser destructuring pour extraire name
-  // const { name } = user;
+  const { name } = user;
+  return name;
 }
 
 /**
  * Fusionne deux objets, obj2 écrase obj1
  */
 function mergeObjects(obj1, obj2) {
-  // TODO: Utiliser spread pour fusionner
-  // return { ...obj1, ...obj2 };
+  return { ...obj1, ...obj2 };
 }
 
 /**
@@ -23,97 +22,134 @@ function mergeObjects(obj1, obj2) {
  * Défauts: { lang: 'en', debug: false }
  */
 function setDefault(config) {
-  // TODO: Fusionner avec défauts
-  // const defaults = { lang: 'en', debug: false };
+  const defaults = { lang: 'en', debug: false };
+  return { ...defaults, ...config };
 }
-
-/**
- * Supplément: 20 défis (Destructuring / Rest / Spread)
- * 5 simples, 5 faciles, 5 moyens, 5 complexes
- */
 
 // Simples
 function firstAndSecond([first, second]) {
-  // TODO: Retourner { first, second }
+  return { first, second };
 }
 
 function swapPair([a, b]) {
-  // TODO: Retourner [b, a]
+  return [b, a];
 }
 
 function defaultsParams({ mode = 'light', size = 'md' } = {}) {
-  // TODO: Retourner { mode, size }
+  return { mode, size };
 }
 
 function renameProps({ id: userId, name: fullName }) {
-  // TODO: Retourner { userId, fullName }
+  return { userId, fullName };
 }
 
 function restArray([head, ...tail]) {
-  // TODO: Retourner { head, tail }
+  return { head, tail };
 }
 
 // Faciles
 function mergeArrays(a, b) {
-  // TODO: Retourner [...a, ...b]
+  return [...a, ...b];
 }
 
 function removeProp(obj, key) {
-  // TODO: Retourner nouvel objet sans la propriété key (rest)
+  const { [key]: _, ...rest } = obj;
+  return rest;
 }
 
 function pickProps(obj, keys) {
-  // TODO: Extraire sous-objet contenant keys
+  const result = {};
+  for (const key of keys) {
+    if (key in obj) result[key] = obj[key];
+  }
+  return result;
 }
 
 function splitFullName({ firstName, lastName, ...rest }) {
-  // TODO: Retourner { firstName, lastName, rest }
+  return { firstName, lastName, rest };
 }
 
 function cloneDeepShallow(obj) {
-  // TODO: Retourner une copie superficielle via spread ({...obj})
+  return { ...obj };
 }
 
 // Moyens
 function nestedDestructure(user) {
-  // TODO: Extraire user.address.city en { city }
+  const { address: { city } = {} } = user;
+  return { city };
 }
 
 function withIndexMap(arr) {
-  // TODO: Retourner arr.map((value, index) => ({ index, value }))
+  return arr.map((value, index) => ({ index, value }));
 }
 
 function mergeMany(...objects) {
-  // TODO: Fusionner tous les objets (spread)
+  return Object.assign({}, ...objects);
 }
 
 function arrayToObject(pairs) {
-  // TODO: [['a',1],['b',2]] → { a:1, b:2 }
+  return Object.fromEntries(pairs);
 }
 
 function objectToPairs(obj) {
-  // TODO: { a:1, b:2 } → [['a',1],['b',2]]
+  return Object.entries(obj);
 }
 
 // Complexes
 function deepMerge(a, b) {
-  // TODO: Fusionner récursivement objets/arrays sans mutation (prims de b écrasent a)
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return [...a, ...b];
+  } else if (a && b && typeof a === 'object' && typeof b === 'object') {
+    const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+    const result = {};
+    for (const key of keys) {
+      if (key in a && key in b) {
+        result[key] = deepMerge(a[key], b[key]);
+      } else if (key in a) {
+        result[key] = a[key];
+      } else {
+        result[key] = b[key];
+      }
+    }
+    return result;
+  } else {
+    return b;
+  }
 }
 
 function pluck(list, path) {
-  // TODO: Extraire valeurs par chemin 'a.b.c' via destructuring
+  const keys = path.split('.');
+  return list.map(item => {
+    let val = item;
+    for (const key of keys) {
+      val = val?.[key];
+    }
+    return val;
+  });
 }
 
 function partitionByKeys(obj, keys) {
-  // TODO: Retourner { picked, omitted }
+  const picked = {};
+  const omitted = {};
+  for (const key in obj) {
+    if (keys.includes(key)) picked[key] = obj[key];
+    else omitted[key] = obj[key];
+  }
+  return { picked, omitted };
 }
 
 function spreadCall(fn, argsArray) {
-  // TODO: Appeler fn(...argsArray)
+  return fn(...argsArray);
 }
 
 function unzip(pairs) {
-  // TODO: [['a',1],['b',2]] → { keys:['a','b'], values:[1,2] }
+  const keys = [];
+  const values = [];
+  for (const [k, v] of pairs) {
+    keys.push(k);
+    values.push(v);
+  }
+  return { keys, values };
 }
 
 module.exports = {
@@ -141,5 +177,3 @@ module.exports = {
   spreadCall,
   unzip
 };
-
-
