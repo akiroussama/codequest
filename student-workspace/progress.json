@@ -32,10 +32,10 @@
   "scenes": {
     "N00-warmup": {
       "startTime": "2025-09-07T23:32:21.572Z",
-      "attempts": 15,
-      "status": "failed",
-      "timeSpent": 624,
-      "lastValidation": "2025-09-08T09:56:03.065Z"
+      "attempts": 34,
+      "status": "base",
+      "timeSpent": 1913,
+      "lastValidation": "2025-09-09T07:25:03.562Z"
     },
     "N06-boss-integration": {
       "startTime": "2025-09-08T04:51:46.711Z",
@@ -64,8 +64,10 @@
       "timeSpent": 0
     }
   },
-  "hintsUsed": {},
+  "hintsUsed": {
+    "N00-scene": 3
+  },
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:56:03.065Z"
+  "lastUpdated": "2025-09-09T07:25:03.562Z"
 }
