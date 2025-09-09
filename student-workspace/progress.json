@@ -1,6 +1,6 @@
 {
   "currentAct": 1,
-  "currentScene": "N00-warmup",
+  "currentScene": "N03-map-filter",
   "completedScenes": [
     "N00-intro",
     "N01-functions"
@@ -62,10 +62,17 @@
       "attempts": 0,
       "status": "started",
       "timeSpent": 0
+    },
+    "N03-map-filter": {
+      "startTime": "2025-09-09T07:46:46.135Z",
+      "attempts": 2,
+      "status": "base",
+      "timeSpent": 1,
+      "lastValidation": "2025-09-09T07:48:00.846Z"
     }
   },
   "hintsUsed": {},
   "totalScore": 0,
   "studentId": "student",
-  "lastUpdated": "2025-09-08T09:56:03.065Z"
+  "lastUpdated": "2025-09-09T07:48:00.846Z"
 }
